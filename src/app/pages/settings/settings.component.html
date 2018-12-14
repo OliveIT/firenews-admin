@@ -1,0 +1,48 @@
+<!-- 
+  - @author    Ionic Bucket <ionicbucket@gmail.com>
+  - @copyright Copyright (c) 2018
+  - @license   Fulcrumy
+-->
+<!-- Settings Page Contents -->
+
+
+<div id="settings">
+
+  <!-- Title Of Page  -->
+  <h2>Change Password</h2>
+
+  <div fxLayout="row" fxLayoutWrap="wrap">
+
+    <!-- Display Error/Success Messages -->
+    <div class="message" *ngIf="message">
+      <p>{{message}}</p>
+    </div>
+
+    <!-- Password Change Form  -->
+    <form [formGroup]="ngForm" (ngSubmit)="updatePassword()">
+
+      <!-- Current Password  -->
+      <mat-form-field>
+        <input matInput placeholder="Enter Password" [type]="hide ? 'password' : 'text'" formControlName="currentPassword" [(ngModel)]="ngForm.currentPassword"
+          name="currentPassword" required>
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        <mat-error *ngIf="!ngForm.controls.currentPassword.valid  && ngForm.controls.currentPassword.dirty">
+          Current Password
+        </mat-error>
+      </mat-form-field>
+
+      <!-- New Password  -->
+      <mat-form-field>
+        <input matInput placeholder="Enter Password" [type]="hide ? 'password' : 'text'" formControlName="newPassword" [(ngModel)]="ngForm.newPassword"
+          name="newPassword" required>
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        <mat-error *ngIf="!ngForm.controls.newPassword.valid  && ngForm.controls.newPassword.dirty">
+          New Password
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Submit Button  -->
+      <button type="submit" mat-raised-button color="warn" [disabled]="!ngForm.valid" (click)="updatePassword()">Update</button>
+    </form>
+  </div>
+</div>

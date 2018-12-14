@@ -1,0 +1,11 @@
+<!-- sidebar -->
+<mat-nav-list appAccordion>
+    <mat-list-item *ngFor="let menuitem of menuItems.getMenuitem()" routerLinkActive="selected">
+        <a class="" [routerLink]="['/', menuitem.state]" *ngIf="menuitem.type === 'link'">
+            <mat-icon>{{ menuitem.icon }}</mat-icon>
+            <span>{{ menuitem.name }}</span>
+            <span fxFlex></span>
+            <span class="label label-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span>
+        </a>
+    </mat-list-item>
+</mat-nav-list>

@@ -1,0 +1,64 @@
+<!-- 
+  - @author    Ionic Bucket <ionicbucket@gmail.com>
+  - @copyright Copyright (c) 2018
+  - @license   Fulcrumy
+-->
+<!-- Video Form Page Contents -->
+
+<div class="video-form-content">
+
+  <div class="flex-container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutAlign.xs="start">
+    <div class="flex-item" fxFlex="40%" fxFlex.xs="40%">
+      <!-- Page Title  -->
+      <h2>Add New Video</h2>
+    </div>
+    <div class="flex-item" fxFlex>
+      <div style="float: right">
+        <!-- Back Button  -->
+        <button color="warn" class="back-btn" mat-raised-button (click)="back()">Back</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dropdown List Of Category  -->
+  <mat-form-field>
+    <mat-select placeholder="Select Category" [(ngModel)]="video.category">
+      <mat-option *ngFor="let category of categories | async" [value]="category.$key">
+        {{ category.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Title of Video  -->
+  <mat-form-field>
+    <input matInput placeholder="Video Title" [(ngModel)]="video.title">
+  </mat-form-field>
+
+  <!-- Link of Youtube  -->
+  <mat-form-field>
+    <input matInput placeholder="Video Youtube Link" [(ngModel)]="video.youtubeLink">
+  </mat-form-field>
+
+
+  <!-- Details of Video Article  -->
+  <h4>Details</h4>
+  <editor apiKey="rzkk9qjf25kh65d2k2knqawlceriuqntdzdeahdi6udhrc6a" [init]="{plugins: ['link', 'image','preview','table'], height: 400}" [(ngModel)]="video.details"></editor>
+
+  <br><br>
+
+  <!-- Feature Image  -->
+  <div class="upload-section">
+    <div class="custom-label">Video Image</div>
+    <img *ngIf="!video.image" src="assets/images/upload2.png" alt="Feature Image" (click)="fileInput.click()">
+    <img *ngIf="video.image" [src]="video.image" alt="Feature Image" (ngModel)="video.image" (click)="fileInput.click()">
+    <input #fileInput type="file" style="display:none;" (change)="detectFiles($event)">
+  </div>
+
+  <!-- Save Button  -->
+  <button color="warn" mat-raised-button *ngIf="!video.$key" [disabled]="!(video.category && video.title && video.image && video.details && video.youtubeLink)"
+    (click)="create()">Save</button>
+
+  <!-- Update Button  -->
+  <button color="warn" mat-raised-button *ngIf="video.$key" [disabled]="!(video.category && video.title && video.image && video.details && video.youtubeLink)"
+    (click)="update()">Update</button>
+</div>

@@ -1,0 +1,58 @@
+<!-- 
+  - @author    Ionic Bucket <ionicbucket@gmail.com>
+  - @copyright Copyright (c) 2018
+  - @license   Fulcrumy
+-->
+<!-- Article Form Page Contents -->
+
+<div class="article-form-content">
+
+  <div class="flex-container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutAlign.xs="start">
+    <div class="flex-item" fxFlex="40%" fxFlex.xs="40%">
+      <!-- Page Title  -->
+      <h2>Add New Article</h2>
+    </div>
+    <div class="flex-item" fxFlex>
+      <div style="float: right">
+        <!-- Back Button  -->
+        <button color="warn" class="back-btn" mat-raised-button (click)="back()">Back</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dropdown List Of Category  -->
+  <mat-form-field>
+    <mat-select placeholder="Select Category" [(ngModel)]="article.category">
+      <mat-option *ngFor="let category of categories | async" [value]="category.$key">
+        {{ category.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Title of Article  -->
+  <mat-form-field>
+    <input matInput placeholder="title" [(ngModel)]="article.title">
+  </mat-form-field>
+
+  <!-- Article Details  -->
+  <h4>Article Details</h4>
+  <editor apiKey="rzkk9qjf25kh65d2k2knqawlceriuqntdzdeahdi6udhrc6a" [init]="{plugins: ['link', 'image','preview','table'], height: 400}" [(ngModel)]="article.details"></editor>
+
+  <br><br>
+
+  <!-- Article Feature Image  -->
+  <div class="upload-section">
+    <div class="custom-label">Article Image</div>
+    <img *ngIf="!article.image" src="assets/images/upload2.png" alt="Feature Image" (click)="fileInput.click()">
+    <img *ngIf="article.image" [src]="article.image" alt="Feature Image" (ngModel)="article.image" (click)="fileInput.click()">
+    <input #fileInput type="file" style="display:none;" (change)="detectFiles($event)">
+  </div>
+
+  <!-- Save Button  -->
+  <button color="warn" mat-raised-button *ngIf="!article.$key" [disabled]="!(article.category && article.title && article.image && article.details)"
+    (click)="create()">Save</button>
+
+  <!-- Update Button  -->
+  <button color="warn" mat-raised-button *ngIf="article.$key" [disabled]="!(article.category && article.title && article.image && article.details)"
+    (click)="update()">Update</button>
+</div>

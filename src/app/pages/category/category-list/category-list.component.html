@@ -1,0 +1,37 @@
+<!-- 
+  - @author    Ionic Bucket <ionicbucket@gmail.com>
+  - @copyright Copyright (c) 2018
+  - @license   Fulcrumy
+-->
+<!-- Category List Page Contents -->
+
+
+<mat-card-content id="category-list">
+  <div class="flex-container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutAlign.xs="start">
+    <div class="flex-item" fxFlex="20%" fxFlex.xs="40%">
+      <!-- Title of Page  -->
+      <h4><b>Categories</b></h4>
+    </div>
+    <div class="flex-item" fxFlex>
+      <div style="float: right">
+        <!-- Add New Category Button  -->
+        <button color="warn" mat-raised-button (click)="openDialog()">Add New Category</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- List of Category  -->
+  <mat-grid-list cols="3" rowHeight="200px">
+    <mat-grid-tile *ngFor="let category of categories | async">
+      <img [alt]="category.name" [src]="category.image">
+      <mat-grid-tile-header>
+        <mat-icon mat-grid-avatar>info_outline</mat-icon>
+        {{category.name}}
+      </mat-grid-tile-header>
+      <mat-grid-tile-footer>
+        <button mat-mini-fab color="primary" (click)="editCategory(category)"><i class="material-icons">mode_edit</i></button>
+        <button mat-mini-fab color="warn" (click)="deleteCategory(category)"><i class="material-icons">delete</i></button>
+      </mat-grid-tile-footer>
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-card-content>

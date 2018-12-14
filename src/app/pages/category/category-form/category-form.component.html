@@ -1,0 +1,33 @@
+<!-- 
+  - @author    Ionic Bucket <ionicbucket@gmail.com>
+  - @copyright Copyright (c) 2018
+  - @license   Fulcrumy
+-->
+<!-- Category Form Page Contents -->
+
+<div class="category-form-container">
+
+  <!-- Page Title  -->
+  <h4>Add New Category</h4>
+
+  <!-- Category Name  -->
+  <mat-form-field>
+    <input matInput placeholder="Category Name" [(ngModel)]="category.name">
+  </mat-form-field>
+
+  <!-- Category Image  -->
+  <div class="upload-section">
+    <div class="custom-label">Category Image</div>
+    <img *ngIf="!category.image" src="assets/images/upload.png" alt="Feature Image" (click)="fileInput.click()">
+    <img *ngIf="category.image" [src]="category.image" alt="Feature Image" (ngModel)="category.image" (click)="fileInput.click()">
+    <input #fileInput type="file" style="display:none;" (change)="detectFiles($event)">
+  </div>
+
+  <div class="btn">
+    <!-- Save Button  -->
+    <button color="warn" mat-raised-button *ngIf="!category.$key" [disabled]="!(category.image && category.name)" (click)="createCategory()">Save Category</button>
+
+    <!-- Update Button  -->
+    <button color="warn" mat-raised-button *ngIf="category.$key" [disabled]="!(category.image && category.name)" (click)="updateCategory()">Update Category</button>
+  </div>
+</div>

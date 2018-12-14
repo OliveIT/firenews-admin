@@ -1,0 +1,47 @@
+<!-- 
+  - @author    Ionic Bucket <ionicbucket@gmail.com>
+  - @copyright Copyright (c) 2018
+  - @license   Fulcrumy
+-->
+<!-- Login Page Contents -->
+
+<div id="login-page">
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="login-card" align="center">
+
+      <mat-card-header class="login-header">
+        <mat-card-title>Admin Panel</mat-card-title>
+        <mat-card-subtitle>News App</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+
+        <!-- Display Error Messages -->
+        <div class="message" *ngIf="message">
+          <p>{{message}}</p>
+        </div>
+
+        <!-- Login Form  -->
+        <form [formGroup]="ngForm" (ngSubmit)="adminLogin()">
+
+          <!-- Email Address  -->
+          <mat-form-field>
+            <input matInput placeholder="Enter Email" formControlName="email" [(ngModel)]="ngForm.email" name="email" required>
+            <mat-error *ngIf="!ngForm.controls.email.valid  && ngForm.controls.email.dirty">Please enter a email address</mat-error>
+          </mat-form-field>
+
+          <!-- Password  -->
+          <mat-form-field>
+            <input matInput placeholder="Enter Password" [type]="hide ? 'password' : 'text'" formControlName="password" [(ngModel)]="ngForm.password"
+              name="password" required>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+            <mat-error *ngIf="!ngForm.controls.password.valid  && ngForm.controls.password.dirty">Please enter password</mat-error>
+          </mat-form-field>
+
+          <!-- Submit Button  -->
+          <button type="submit" mat-raised-button [disabled]="!ngForm.valid" color="warn" (click)="adminLogin()">Log in</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

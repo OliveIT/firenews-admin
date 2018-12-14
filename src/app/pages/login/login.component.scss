@@ -1,0 +1,25 @@
+$red: rgb(244, 67, 54);
+#login-page {
+    height: 100%;
+/*    background: url("../../../assets/images/background.jpg") no-repeat fixed center;*/
+    background: url("https://www.vareximaging.com/sites/default/files/Newspaper_6.jpg") no-repeat fixed center;
+    background-size: cover;
+    .login-card {
+        margin-top: 10%;
+        background-color: #f9fff5;
+        .login-header {
+            text-align: center;
+            display: initial;
+        }
+        .message {
+            color: $red;
+            text-align: center;
+            font-size: 12px;
+            width: 80%;
+            display: inline-block;
+        }
+        .mat-raised-button {
+            margin-top: 10%;
+        }
+    }
+}

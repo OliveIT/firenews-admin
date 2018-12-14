@@ -1,0 +1,30 @@
+<!-- 
+  - @author    Ionic Bucket <ionicbucket@gmail.com>
+  - @copyright Copyright (c) 2018
+  - @license   Fulcrumy
+-->
+<!-- Video Details Page Contents -->
+
+<mat-card-header>
+  <mat-card-title>
+
+    <!-- Video Article Title  -->
+    <h1>{{ data.title }}</h1>
+
+    <!-- Video Article Category and  Created Time -->
+    <h5>{{ data.category }} | <span> <i class="material-icons">access_time</i>{{ data.timestamp | date }}</span></h5>
+
+  </mat-card-title>
+</mat-card-header>
+
+<!-- Feature Image  -->
+<img mat-card-image class="article-details-image" [src]="data.image" [alt]="data.title">
+
+<mat-card-content>
+
+  <!-- Youtube Video Link  -->
+  <a [href]="data.youtubeLink" target="_blank">{{data.youtubeLink}}</a>
+
+  <!-- Details of Video  -->
+  <div [innerHTML]="data.details"></div>
+</mat-card-content>

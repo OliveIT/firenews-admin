@@ -1,0 +1,37 @@
+<!-- 
+  - @author    Ionic Bucket <ionicbucket@gmail.com>
+  - @copyright Copyright (c) 2018
+  - @license   Fulcrumy
+-->
+<!-- Contact Page Contents -->
+
+<div id="contact">
+
+  <!-- Title of Page  -->
+  <h2>Contact Us Information</h2>
+
+  <!-- Contact Form  -->
+  <div fxLayout="row" fxLayoutWrap="wrap">
+    <div class="contact-form">
+
+      <!-- Email Field  -->
+      <mat-form-field>
+        <input matInput placeholder="Email" [(ngModel)]="contactForm.email">
+      </mat-form-field>
+
+      <!-- Phone Field  -->
+      <mat-form-field>
+        <input matInput placeholder="Phone" [(ngModel)]="contactForm.phone">
+      </mat-form-field>
+
+      <!-- Address Field  -->
+      <mat-form-field>
+        <textarea matInput placeholder="Adress" [(ngModel)]="contactForm.address"></textarea>
+      </mat-form-field>
+
+      <!-- Save Button  -->
+      <button color="warn" mat-raised-button (click)="save()">Save</button>
+    </div>
+
+  </div>
+</div>

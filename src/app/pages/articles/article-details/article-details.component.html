@@ -1,0 +1,27 @@
+<!-- 
+  - @author    Ionic Bucket <ionicbucket@gmail.com>
+  - @copyright Copyright (c) 2018
+  - @license   Fulcrumy
+-->
+<!-- Article Details Page Contents -->
+
+<div id="article-details-content">
+  <mat-card-header>
+    <mat-card-title>
+
+      <!-- Article Title  -->
+      <h1>{{ data.title }}</h1>
+
+      <!-- Article Category and  Created Time -->
+      <h5>{{ data.category }} | <span> <i class="material-icons">access_time</i>{{ data.timestamp | date }}</span></h5>
+    </mat-card-title>
+  </mat-card-header>
+
+  <!-- Article Feature Image  -->
+  <img mat-card-image class="article-details-image" [src]="data.image" [alt]="data.title">
+
+  <!-- Article Details  -->
+  <mat-card-content>
+    <div [innerHTML]="data.details"></div>
+  </mat-card-content>
+</div>

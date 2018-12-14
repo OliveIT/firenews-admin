@@ -1,0 +1,31 @@
+<!-- 
+  - @author    Ionic Bucket <ionicbucket@gmail.com>
+  - @copyright Copyright (c) 2018
+  - @license   Fulcrumy
+-->
+<!-- AboutUs Page Contents -->
+
+<div id="about-container">
+
+  <!-- Title of Page  -->
+  <h2>AboutUs</h2>
+
+  <!-- AboutUs Form  -->
+  <div class="about-form">
+
+    <!--  Title Field -->
+    <mat-form-field>
+      <input matInput placeholder="title" [(ngModel)]="aboutus.title">
+    </mat-form-field>
+
+    <!-- AboutUs Details Field  -->
+    <h4>About Details</h4>
+    <editor apiKey="rzkk9qjf25kh65d2k2knqawlceriuqntdzdeahdi6udhrc6a" [init]="{plugins: ['link', 'image','preview','table'], height: 400}" [(ngModel)]="aboutus.details"></editor>
+
+    <br><br>
+
+    <!-- Save Button  -->
+    <button color="warn" mat-raised-button (click)="save()">Save</button>
+  </div>
+
+</div>

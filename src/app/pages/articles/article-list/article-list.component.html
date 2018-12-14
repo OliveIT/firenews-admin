@@ -1,0 +1,74 @@
+<!-- 
+  - @author    Ionic Bucket <ionicbucket@gmail.com>
+  - @copyright Copyright (c) 2018
+  - @license   Fulcrumy
+-->
+<!-- Article List Page Contents -->
+
+<div id="article-contents">
+
+  <div class="flex-container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutAlign.xs="start">
+    <div class="flex-item" fxFlex="20%" fxFlex.xs="40%">
+      <!-- Title of Page  -->
+      <h4><b>Articles</b></h4>
+    </div>
+    <div class="flex-item" fxFlex>
+      <div style="float: right">
+        <!-- Add New Article Button  -->
+        <button color="warn" mat-raised-button (click)="gotoArticleFormPage()">Add New Article</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="flex-container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutAlign.xs="start" *ngIf="articles?.length > 0">
+    <div class="flex-item" fxFlex>
+      <!-- Search Input Box  -->
+      <mat-form-field>
+        <input type="text" matInput placeholder="Search articles..." [(ngModel)]="searchInput" (keydown)="search($event)">
+      </mat-form-field>
+    </div>
+    <div class="flex-item" fxFlex>
+      <div style="float: right">
+        <!-- Category Dropdown List  -->
+        <mat-form-field>
+          <mat-select placeholder="Select Category" [(ngModel)]="selectedCategory" (change)="getArticleByCategory(selectedCategory)">
+            <mat-option>Select Category</mat-option>
+            <mat-option *ngFor="let category of categories | async" [value]="category.$key">
+              {{ category.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <!-- List of Articles  -->
+  <mat-grid-list cols="3" rowHeight="200px">
+    <mat-grid-tile *ngFor="let article of articles">
+      <img [alt]="article.title" [src]="article.image">
+      <mat-grid-tile-header>
+        <mat-icon mat-grid-avatar>info_outline</mat-icon>
+        {{article.title}}
+      </mat-grid-tile-header>
+      <mat-grid-tile-footer>
+        <button mat-mini-fab color="primary" (click)="edit(article)"><i class="material-icons">mode_edit</i></button>
+        <button mat-mini-fab color="warn" (click)="delete(article)"><i class="material-icons">delete</i></button>
+        <button mat-mini-fab color="accent" (click)="viewDetails(article)"><i class="material-icons">remove_red_eye</i></button>
+      </mat-grid-tile-footer>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <!-- No Articles Found  -->
+  <div *ngIf="articles?.length < 1">
+    <p>Sorry, no articles found</p>
+  </div>
+
+  <br>
+
+  <!-- Load More Articles Button  -->
+  <button mat-raised-button color="warn" *ngIf="!(articleService.done | async)" (click)="loadMore()">Load More</button>
+
+  <!--  No more articles exist -->
+  <p class="tag is-warning" *ngIf="articleService.done | async">No more articles exist...</p>
+</div>

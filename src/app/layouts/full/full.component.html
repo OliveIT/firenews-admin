@@ -1,0 +1,46 @@
+<!-- Main wrapper - style you can find in pages.scss -->
+<div class="main-container">
+
+    <!-- Topbar - style you can find in header.scss -->
+    <mat-toolbar color="white" class="topbar telative">
+        <button mat-icon-button (click)="snav.toggle()" value="sidebarclosed">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <h2>Admin Panel</h2>
+        <span fxFlex></span>
+
+        <!-- app header component - style you can find in header.scss / header.component.ts-->
+        <app-header></app-header>
+    </mat-toolbar>
+
+    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
+        <!-- Sidebar - style you can find in sidebar.scss -->
+        <mat-sidenav #snav id="snav" class="dark-sidebar pl-xs" [mode]="mobileQuery.matches ? 'side' : 'over'" fixedTopGap="0" [opened]="mobileQuery.matches"
+            [disableClose]="mobileQuery.matches">
+            <app-sidebar></app-sidebar>
+        </mat-sidenav>
+
+        <!-- Page container - style you can find in pages.scss -->
+        <mat-sidenav-content class="page-wrapper">
+            <div class="page-content">
+                <div fxLayout="row" fxLayoutWrap="wrap">
+                    <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                        <mat-card>
+                            <mat-card-content>
+                                <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                                    <div fxLayout="row" fxLayoutWrap="wrap">
+                                        <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                                            <router-outlet>
+                                                <app-spinner></app-spinner>
+                                            </router-outlet>
+                                        </div>
+                                    </div>
+                                </div>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
